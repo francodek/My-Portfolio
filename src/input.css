@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --font-body: 'Outfit', sans-serif;
+  --font-display: 'Syne', sans-serif;
+
+  --color-surface-light: #f8f7f4;
+  --color-surface-dark: #0e0e10;
+  --color-card-light: #ffffff;
+  --color-card-dark: #1a1a1f;
+  --color-accent: #e85d30;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Smooth theme transitions */
+*,
+*::before,
+*::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html { scroll-behavior: smooth; }
+html.dark { background: var(--color-surface-dark); }
+html:not(.dark) { background: var(--color-surface-light); }
+body { font-family: var(--font-body); }
+.font-display { font-family: var(--font-display); }
+
+.gradient-text {
+  background: linear-gradient(135deg, #e85d30 0%, #f0a040 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Skill bars */
+.skill-bar {
+  height: 6px;
+  border-radius: 3px;
+  background: #e5e5e5;
+  overflow: hidden;
+}
+.dark .skill-bar { background: #2a2a30; }
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: linear-gradient(90deg, #e85d30, #f0a040);
+  transition: width 1s ease;
+  width: 0;
+}
+.skill-bar-fill.animate { width: var(--w); }
